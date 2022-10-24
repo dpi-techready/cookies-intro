@@ -12,6 +12,8 @@ class TranslationsController < ApplicationController
   end
 
   def translate
+    # @text_to_translate = params.fetch("message_body")
+    # @language_choice = params.fetch("language_selection")
     text_to_translate = params.fetch("message_body")
     language_choice = params.fetch("language_selection")
 
@@ -44,6 +46,11 @@ class TranslationsController < ApplicationController
       # Send your SMS!
       twilio_client.api.account.messages.create(sms_parameters)
     end
+
+    
+    cookies.store(:translate_from, text_to_translate)
+    cookies.store(:translate_to, language_choice)
+    cookies.store(:translation_result, @translation)
 
     render({ :template => "translation_templates/translate_results.html.erb" })
   end

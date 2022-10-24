@@ -29,3 +29,11 @@
     <button>Translate!</button>
   </div>
 </form>
+
+<p>Your previous translation was:
+<%= cookies.fetch(:translate_from) %>
+to
+<%= cookies.fetch(:translate_to) %>
+=
+<%= cookies.fetch(:translation_result) %>
+</p>
